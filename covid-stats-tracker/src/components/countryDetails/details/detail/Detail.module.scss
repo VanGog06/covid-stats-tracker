@@ -1,0 +1,10 @@
+.detail {
+  flex: 1;
+  margin: 1rem 0;
+
+  &__title,
+  &__data {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
