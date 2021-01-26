@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
+import { Collapsible } from '../collapsible/Collapsible';
 import styles from './ModalBox.module.scss';
 
 export const ModalBox = (): JSX.Element => {
@@ -27,8 +28,7 @@ export const ModalBox = (): JSX.Element => {
           <h2>Historic data</h2>
         </div>
         <div className={styles.modal__content__body}>
-          <p>Some text in the Modal Body</p>
-          <p>Some other text...</p>
+          <Collapsible />
         </div>
       </div>
     </div>
