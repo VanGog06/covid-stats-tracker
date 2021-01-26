@@ -1,0 +1,18 @@
+.detail {
+  flex: 1;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__date {
+    font-style: italic;
+    color: #666;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
