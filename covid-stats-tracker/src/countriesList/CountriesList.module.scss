@@ -1,0 +1,18 @@
+.table {
+  border-collapse: collapse;
+
+  &__tr {
+    position: relative;
+
+    &:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    &__td,
+    &__th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+  }
+}

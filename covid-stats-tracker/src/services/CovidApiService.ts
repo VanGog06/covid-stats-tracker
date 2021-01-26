@@ -1,3 +1,4 @@
+import { apiEndpoints, baseApiUrl } from '../common/constants';
 import { SummaryType } from '../models/summary/SummaryType';
 
 export class CovidApiService {
@@ -7,8 +8,18 @@ export class CovidApiService {
       redirect: "follow",
     };
 
-    return fetch("https://api.covid19api.com/summary", getRequestOptions)
-      .then((response: Response) => response.text())
-      .then((result: string): SummaryType => JSON.parse(result) as SummaryType);
+    const summaryResponse: Response = await fetch(
+      `${baseApiUrl}${apiEndpoints.getSummary}`,
+      getRequestOptions
+    );
+    const summaryString: string = await summaryResponse.text();
+    const fetchedSummary: SummaryType = JSON.parse(
+      summaryString
+    ) as SummaryType;
+
+    return {
+      ...fetchedSummary,
+      Countries: fetchedSummary.Countries.slice(0, 10),
+    };
   }
 }

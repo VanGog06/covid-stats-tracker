@@ -5,7 +5,7 @@ import { CovidContextType } from '../../models/context/CovidContextType';
 import { SummaryType } from '../../models/summary/SummaryType';
 import { CovidApiService } from '../../services/CovidApiService';
 
-export const Button = (): JSX.Element => {
+export const SummaryRetriever = (): JSX.Element => {
   const { changeSummary }: CovidContextType = useContext(CovidContext);
 
   const getSummary = useCallback(

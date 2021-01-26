@@ -5,4 +5,5 @@ export interface ICountrySummary extends IGlobalSummary {
   CountryCode: string;
   Slug: string;
   Date: string;
+  ID: string;
 }
