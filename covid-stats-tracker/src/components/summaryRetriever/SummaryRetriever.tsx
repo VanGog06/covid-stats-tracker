@@ -24,5 +24,9 @@ export const SummaryRetriever = (): JSX.Element => {
     [changeSummary]
   );
 
-  return <button onClick={getSummary}>Get summary</button>;
+  return (
+    <button type="button" onClick={getSummary}>
+      Get summary
+    </button>
+  );
 };

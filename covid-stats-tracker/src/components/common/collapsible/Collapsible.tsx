@@ -7,7 +7,7 @@ export const Collapsible = () => {
 
   const contentClassName: string = useMemo(
     () => (isOpen ? styles.content : styles.hideContent),
-    [isOpen, setIsOpen]
+    [isOpen]
   );
 
   const toggleContent = useCallback(() => {

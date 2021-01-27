@@ -1,19 +1,22 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 
+import { CovidContext } from '../../../context/CovidContext';
+import { CovidContextType } from '../../../models/context/CovidContextType';
 import { Collapsible } from '../collapsible/Collapsible';
 import styles from './ModalBox.module.scss';
 
 export const ModalBox = (): JSX.Element => {
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  const modalClassName: string = useMemo(
-    () => (showModal ? styles.modal : styles.hideModal),
-    [showModal]
+  const { showModal, changeShowModal }: CovidContextType = useContext(
+    CovidContext
   );
 
+  const modalClassName: string = useMemo(() => {
+    return showModal ? styles.modal : styles.hideModal;
+  }, [showModal]);
+
   const hideModal = useCallback((): void => {
-    setShowModal(false);
-  }, [setShowModal]);
+    changeShowModal(false);
+  }, [changeShowModal]);
 
   return (
     <div className={modalClassName}>
