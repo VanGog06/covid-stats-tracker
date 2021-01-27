@@ -1,5 +1,5 @@
 .collapsible {
-  background-color: #777;
+  background-color: #00a76a;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -8,22 +8,23 @@
   text-align: left;
   outline: none;
   font-size: 15px;
-  margin: 0.1rem;
+  margin: 0.1rem 0;
 
   &:hover {
-    background-color: #555;
+    background-color: #008655;
   }
 }
 
 .active {
-  background-color: #555;
+  background-color: #006440;
 }
 
 .content {
   display: block;
   padding: 0 18px;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #1e4dd8;
+  color: #fff;
 }
 
 .hideContent {

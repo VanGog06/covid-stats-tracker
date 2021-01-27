@@ -2,9 +2,15 @@
   flex: 1;
   margin: 1rem 0;
 
-  &__title,
+  &__title {
+    margin-top: 0.25rem;
+    margin-bottom: 0.1rem;
+    font-style: italic;
+  }
+
   &__data {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.25rem;
+    font-size: 32px;
   }
 }

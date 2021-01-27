@@ -1,19 +1,28 @@
 .table {
   border-collapse: collapse;
   flex: 1;
+  margin: 1rem;
+  border-collapse: collapse;
 
   &__tr {
     position: relative;
 
-    &:nth-child(even) {
-      background-color: #dddddd;
-    }
-
-    &__td,
-    &__th {
+    &__td {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
+      border-left: none;
+      border-right: none;
+    }
+
+    &__th {
+      text-align: left;
+      background: #1e4dd8;
+      color: #fff;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      padding: 0.75rem;
     }
   }
 }

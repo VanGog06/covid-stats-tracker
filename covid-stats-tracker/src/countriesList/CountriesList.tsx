@@ -26,7 +26,7 @@ export const CountriesList: React.FC = (): JSX.Element => {
     [summary]
   );
 
-  return (
+  return rows.length ? (
     <table className={styles.table}>
       <thead>
         <tr className={styles.table__tr}>
@@ -38,5 +38,7 @@ export const CountriesList: React.FC = (): JSX.Element => {
       </thead>
       <tbody>{rows}</tbody>
     </table>
+  ) : (
+    <></>
   );
 };
