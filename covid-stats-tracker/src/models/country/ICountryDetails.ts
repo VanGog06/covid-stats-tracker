@@ -1,5 +1,3 @@
-import { DataState } from '../common/DataState';
-
 export interface ICountryDetails {
   ID: string;
   Country: string;

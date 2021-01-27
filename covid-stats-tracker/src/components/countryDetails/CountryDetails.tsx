@@ -1,8 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { CovidContext } from '../../context/CovidContext';
 import { CountryDetailsParams } from '../../models/common/CountryDetailsParams';
 import { DataState } from '../../models/common/DataState';
+import { CovidContextType } from '../../models/context/CovidContextType';
 import { CountryDetailsType } from '../../models/country/CountryDetailsType';
 import { ICountryDetails } from '../../models/country/ICountryDetails';
 import { CovidApiService } from '../../services/CovidApiService';
@@ -10,6 +12,9 @@ import { Details } from './details/Details';
 
 export const CountryDetails: React.FC = (): JSX.Element => {
   const { slug } = useParams<CountryDetailsParams>();
+  const { changeShowModal, changeHistoricData }: CovidContextType = useContext(
+    CovidContext
+  );
 
   const [details, setDetails] = useState<CountryDetailsType>({
     details: [],
@@ -52,12 +57,27 @@ export const CountryDetails: React.FC = (): JSX.Element => {
     []
   );
 
+  const showModal = useCallback((): void => {
+    changeShowModal(true);
+
+    //Only use the last 10 entries
+    const newHistoricData: ICountryDetails[] = details.details
+      .slice(-11)
+      .reverse();
+    newHistoricData.pop();
+
+    changeHistoricData(newHistoricData);
+  }, [details, changeShowModal, changeHistoricData]);
+
   return details && details.state === DataState.idle ? (
     pendingDetails
   ) : details.state === DataState.pending ? (
     loadingDetails
   ) : details.state === DataState.completed ? (
-    <Details details={details.details[details.details.length - 1]} />
+    <Details
+      details={details.details[details.details.length - 1]}
+      handleBtnClick={showModal}
+    />
   ) : (
     errorDetails
   );

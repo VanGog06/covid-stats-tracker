@@ -1,3 +1,4 @@
+import { ICountryDetails } from '../country/ICountryDetails';
 import { SummaryType } from '../summary/SummaryType';
 
 export type CovidContextType = {
@@ -5,4 +6,6 @@ export type CovidContextType = {
   changeSummary(newSummary: SummaryType): void;
   showModal: boolean;
   changeShowModal(newShowModal: boolean): void;
+  historicData: ICountryDetails[];
+  changeHistoricData(newData: ICountryDetails[]): void;
 };

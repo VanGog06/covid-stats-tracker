@@ -1,8 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import styles from './Collapsible.module.scss';
+import { ICollapsibleProps } from './ICollapsibleProps';
 
-export const Collapsible = () => {
+export const Collapsible: React.FC<ICollapsibleProps> = ({
+  title,
+  body,
+}: ICollapsibleProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const contentClassName: string = useMemo(
@@ -21,15 +25,16 @@ export const Collapsible = () => {
         className={styles.collapsible}
         onClick={toggleContent}
       >
-        Open Collapsible
+        {title}
       </button>
       <div className={contentClassName}>
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
-        </p>
+        </p> */}
+        {body}
       </div>
     </>
   );

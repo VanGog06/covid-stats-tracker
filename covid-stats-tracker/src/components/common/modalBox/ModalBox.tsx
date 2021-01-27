@@ -2,10 +2,13 @@ import { useCallback, useContext, useMemo } from 'react';
 
 import { CovidContext } from '../../../context/CovidContext';
 import { CovidContextType } from '../../../models/context/CovidContextType';
-import { Collapsible } from '../collapsible/Collapsible';
+import { IModalBoxProps } from './IModalBoxProps';
 import styles from './ModalBox.module.scss';
 
-export const ModalBox = (): JSX.Element => {
+export const ModalBox: React.FC<IModalBoxProps> = ({
+  title,
+  body,
+}: IModalBoxProps): JSX.Element => {
   const { showModal, changeShowModal }: CovidContextType = useContext(
     CovidContext
   );
@@ -28,11 +31,9 @@ export const ModalBox = (): JSX.Element => {
           >
             &times;
           </span>
-          <h2>Historic data</h2>
+          <h2>{title}</h2>
         </div>
-        <div className={styles.modal__content__body}>
-          <Collapsible />
-        </div>
+        <div className={styles.modal__content__body}>{body}</div>
       </div>
     </div>
   );

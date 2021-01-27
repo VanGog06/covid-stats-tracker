@@ -1,16 +1,13 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
-import { CovidContext } from '../../../context/CovidContext';
-import { CovidContextType } from '../../../models/context/CovidContextType';
 import { Detail } from './detail/Detail';
 import styles from './Details.module.scss';
 import { ICompletedDetailsProps } from './IDetailsProps';
 
 export const Details: React.FC<ICompletedDetailsProps> = ({
   details,
+  handleBtnClick,
 }: ICompletedDetailsProps): JSX.Element => {
-  const { changeShowModal }: CovidContextType = useContext(CovidContext);
-
   const countryName: string = useMemo(
     (): string => (details ? details.Country : ""),
     [details]
@@ -19,10 +16,6 @@ export const Details: React.FC<ICompletedDetailsProps> = ({
   const date: string = useMemo(() => new Date(details.Date).toDateString(), [
     details,
   ]);
-
-  const showModal = useCallback((): void => {
-    changeShowModal(true);
-  }, [changeShowModal]);
 
   return (
     <div className={styles.detail}>
@@ -39,7 +32,7 @@ export const Details: React.FC<ICompletedDetailsProps> = ({
         <Detail title="Recovered" data={details.Recovered} />
       </div>
 
-      <button type="button" onClick={showModal}>
+      <button type="button" onClick={handleBtnClick}>
         Check historical data
       </button>
     </div>
