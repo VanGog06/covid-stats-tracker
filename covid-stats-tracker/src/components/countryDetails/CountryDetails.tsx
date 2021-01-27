@@ -8,6 +8,7 @@ import { CovidContextType } from '../../models/context/CovidContextType';
 import { CountryDetailsType } from '../../models/country/CountryDetailsType';
 import { ICountryDetails } from '../../models/country/ICountryDetails';
 import { CovidApiService } from '../../services/CovidApiService';
+import { Error } from '../common/error/Error';
 import { Loader } from '../common/loader/Loader';
 import { Details } from './details/Details';
 
@@ -50,10 +51,7 @@ export const CountryDetails: React.FC = (): JSX.Element => {
 
   const loadingDetails: JSX.Element = useMemo(() => <Loader />, []);
 
-  const errorDetails: JSX.Element = useMemo(
-    () => <div>There was an error retrieving data...</div>,
-    []
-  );
+  const errorDetails: JSX.Element = useMemo(() => <Error />, []);
 
   const showModal = useCallback((): void => {
     changeShowModal(true);

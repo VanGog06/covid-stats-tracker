@@ -1,3 +1,4 @@
+import { DataState } from '../models/common/DataState';
 import { SummaryType } from '../models/summary/SummaryType';
 
 export const summaryDefaultValue: SummaryType = {
@@ -13,4 +14,5 @@ export const summaryDefaultValue: SummaryType = {
   },
   ID: "",
   Message: "",
+  State: DataState.idle,
 };

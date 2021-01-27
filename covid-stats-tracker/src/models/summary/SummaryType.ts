@@ -1,3 +1,4 @@
+import { DataState } from '../common/DataState';
 import { ICountrySummary } from './ICountrySummary';
 import { IGlobalSummary } from './IGlobalSummary';
 
@@ -7,4 +8,5 @@ export type SummaryType = {
   Message: string;
   ID: string;
   Date: string;
+  State: DataState;
 };

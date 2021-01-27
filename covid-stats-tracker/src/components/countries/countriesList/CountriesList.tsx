@@ -1,17 +1,16 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { CovidContext } from '../context/CovidContext';
-import { CovidContextType } from '../models/context/CovidContextType';
-import { ICountrySummary } from '../models/summary/ICountrySummary';
+import { ICountrySummary } from '../../../models/summary/ICountrySummary';
 import styles from './CountriesList.module.scss';
+import { ICountriesListProps } from './ICountriesListProps';
 
-export const CountriesList: React.FC = (): JSX.Element => {
-  const { summary }: CovidContextType = useContext(CovidContext);
-
+export const CountriesList: React.FC<ICountriesListProps> = ({
+  countries,
+}: ICountriesListProps): JSX.Element => {
   const rows: JSX.Element[] = useMemo(
     () =>
-      summary.Countries.map(
+      countries.map(
         (c: ICountrySummary): JSX.Element => (
           <tr key={c.ID} className={styles.table__tr}>
             <td className={styles.table__tr__td}>
@@ -23,7 +22,7 @@ export const CountriesList: React.FC = (): JSX.Element => {
           </tr>
         )
       ),
-    [summary]
+    [countries]
   );
 
   return rows.length ? (

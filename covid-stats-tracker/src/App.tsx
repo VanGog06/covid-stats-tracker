@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import styles from './App.module.scss';
+import { Countries } from './components/countries/Countries';
 import { CountryDetails } from './components/countryDetails/CountryDetails';
 import { HistoricalBox } from './components/countryDetails/details/historicalBox/HistoricalBox';
 import { SummaryRetriever } from './components/summaryRetriever/SummaryRetriever';
 import { CovidProvider } from './context/CovidContext';
-import { CountriesList } from './countriesList/CountriesList';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <SummaryRetriever />
         <Router>
           <div className={styles.app_root__countries_container}>
-            <CountriesList />
+            <Countries />
             <div className={styles.app_root__countries_container__details}>
               <Switch>
                 <Route path={`/:slug/details`}>

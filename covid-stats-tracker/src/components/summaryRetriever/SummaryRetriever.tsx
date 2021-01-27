@@ -1,28 +1,31 @@
 import React, { useCallback, useContext } from 'react';
 
 import { CovidContext } from '../../context/CovidContext';
+import { DataState } from '../../models/common/DataState';
 import { CovidContextType } from '../../models/context/CovidContextType';
 import { SummaryType } from '../../models/summary/SummaryType';
 import { CovidApiService } from '../../services/CovidApiService';
 import styles from './SummaryRetriever.module.scss';
 
 export const SummaryRetriever = (): JSX.Element => {
-  const { changeSummary }: CovidContextType = useContext(CovidContext);
+  const { summary, changeSummary }: CovidContextType = useContext(CovidContext);
 
   const getSummary = useCallback(
     async (
       event: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ): Promise<void> => {
       event.preventDefault();
+      changeSummary({ ...summary, State: DataState.pending });
 
       try {
         const fetchedSummary: SummaryType = await CovidApiService.getSummary();
-        changeSummary(fetchedSummary);
+        changeSummary({ ...fetchedSummary, State: DataState.completed });
       } catch (err) {
         console.log(err);
+        changeSummary({ ...summary, State: DataState.error });
       }
     },
-    [changeSummary]
+    [summary, changeSummary]
   );
 
   return (
