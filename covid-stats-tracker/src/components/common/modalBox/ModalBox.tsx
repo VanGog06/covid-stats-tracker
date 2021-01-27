@@ -1,4 +1,5 @@
 import { useCallback, useContext, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { CovidContext } from '../../../context/CovidContext';
 import { CovidContextType } from '../../../models/context/CovidContextType';
@@ -9,6 +10,7 @@ export const ModalBox: React.FC<IModalBoxProps> = ({
   title,
   body,
 }: IModalBoxProps): JSX.Element => {
+  const history = useHistory();
   const { showModal, changeShowModal }: CovidContextType = useContext(
     CovidContext
   );
@@ -18,8 +20,9 @@ export const ModalBox: React.FC<IModalBoxProps> = ({
   }, [showModal]);
 
   const hideModal = useCallback((): void => {
+    history.goBack();
     changeShowModal(false);
-  }, [changeShowModal]);
+  }, [history, changeShowModal]);
 
   return (
     <div className={modalClassName}>

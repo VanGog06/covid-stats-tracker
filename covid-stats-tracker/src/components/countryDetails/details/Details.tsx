@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
+import { CountryDetailsParams } from '../../../models/common/CountryDetailsParams';
 import { Detail } from './detail/Detail';
 import styles from './Details.module.scss';
 import { ICompletedDetailsProps } from './IDetailsProps';
@@ -8,6 +10,7 @@ export const Details: React.FC<ICompletedDetailsProps> = ({
   details,
   handleBtnClick,
 }: ICompletedDetailsProps): JSX.Element => {
+  const { slug } = useParams<CountryDetailsParams>();
   const countryName: string = useMemo(
     (): string => (details ? details.Country : ""),
     [details]
@@ -32,9 +35,9 @@ export const Details: React.FC<ICompletedDetailsProps> = ({
         <Detail title="Recovered" data={details.Recovered} />
       </div>
 
-      <button type="button" onClick={handleBtnClick}>
-        Check historical data
-      </button>
+      <Link to={`/${slug}/historic`} onClick={handleBtnClick}>
+        Check historic data
+      </Link>
     </div>
   );
 };

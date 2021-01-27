@@ -12,16 +12,20 @@ function App() {
   return (
     <div className={styles.app_root}>
       <CovidProvider>
-        <HistoricalBox />
         <SummaryRetriever />
         <Router>
           <div className={styles.app_root__countries_container}>
             <CountriesList />
-            <Switch>
-              <Route path={`/:slug/details`}>
-                <CountryDetails />
-              </Route>
-            </Switch>
+            <div className={styles.app_root__countries_container__details}>
+              <Switch>
+                <Route path={`/:slug/details`}>
+                  <CountryDetails />
+                </Route>
+                <Route path={`/:slug/historic`}>
+                  <HistoricalBox />
+                </Route>
+              </Switch>
+            </div>
           </div>
         </Router>
       </CovidProvider>

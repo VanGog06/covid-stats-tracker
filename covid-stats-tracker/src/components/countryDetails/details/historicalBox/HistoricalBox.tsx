@@ -5,6 +5,7 @@ import { CovidContextType } from '../../../../models/context/CovidContextType';
 import { Collapsible } from '../../../common/collapsible/Collapsible';
 import { ModalBox } from '../../../common/modalBox/ModalBox';
 import { Detail } from '../detail/Detail';
+import styles from './HistoricalBox.module.scss';
 
 export const HistoricalBox = (): JSX.Element => {
   const { historicData }: CovidContextType = useContext(CovidContext);
@@ -12,7 +13,7 @@ export const HistoricalBox = (): JSX.Element => {
   const historicCollapsibles: JSX.Element[] = useMemo(() => {
     return historicData.map((hd) => {
       const body: JSX.Element = (
-        <div style={{ display: "flex" }}>
+        <div className={styles.detail_container}>
           <Detail title="Confirmed" data={hd.Confirmed} />
           <Detail title="Active" data={hd.Active} />
           <Detail title="Deaths" data={hd.Deaths} />
