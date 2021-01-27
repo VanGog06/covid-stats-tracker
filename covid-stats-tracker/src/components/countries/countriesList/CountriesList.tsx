@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ICountrySummary } from '../../../models/summary/ICountrySummary';
+import { SortableColumn } from '../../common/sortableColumn/SortableColumn';
 import styles from './CountriesList.module.scss';
 import { ICountriesListProps } from './ICountriesListProps';
 
@@ -30,7 +31,7 @@ export const CountriesList: React.FC<ICountriesListProps> = ({
       <thead>
         <tr className={styles.table__tr}>
           <th className={styles.table__tr__th}>Name</th>
-          <th className={styles.table__tr__th}>Total confirmed</th>
+          <SortableColumn title="Total confirmed" />
           <th className={styles.table__tr__th}>Total deaths</th>
           <th className={styles.table__tr__th}>Total recovered</th>
         </tr>

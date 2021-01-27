@@ -19,6 +19,11 @@ export const SummaryRetriever = (): JSX.Element => {
 
       try {
         const fetchedSummary: SummaryType = await CovidApiService.getSummary();
+        fetchedSummary.Countries.sort(
+          (firstCountry, secondCountry) =>
+            firstCountry.TotalConfirmed - secondCountry.TotalConfirmed
+        );
+
         changeSummary({ ...fetchedSummary, State: DataState.completed });
       } catch (err) {
         console.log(err);
