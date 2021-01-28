@@ -7,7 +7,7 @@ import { ModalBox } from '../../../common/modalBox/ModalBox';
 import { Detail } from '../detail/Detail';
 import styles from './HistoricalBox.module.scss';
 
-export const HistoricalBox = (): JSX.Element => {
+export const HistoricalBox: React.FC = (): JSX.Element => {
   const { historicData }: CovidContextType = useContext(CovidContext);
 
   const historicCollapsibles: JSX.Element[] = useMemo(() => {

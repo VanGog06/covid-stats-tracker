@@ -4,14 +4,8 @@ import { SummaryType } from '../models/summary/SummaryType';
 
 export class CovidApiService {
   public static async getSummary(): Promise<SummaryType> {
-    const getRequestOptions: RequestInit = {
-      method: "GET",
-      redirect: "follow",
-    };
-
     const summaryResponse: Response = await fetch(
-      `${baseApiUrl}${apiEndpoints.getSummary}`,
-      getRequestOptions
+      `${baseApiUrl}${apiEndpoints.getSummary}`
     );
     const summaryString: string = await summaryResponse.text();
     const fetchedSummary: SummaryType = JSON.parse(
@@ -25,14 +19,8 @@ export class CovidApiService {
   }
 
   public static async getByCountry(slug: string): Promise<ICountryDetails[]> {
-    const getRequestOptions: RequestInit = {
-      method: "GET",
-      redirect: "follow",
-    };
-
     const countryResponse: Response = await fetch(
-      `${baseApiUrl}${apiEndpoints.getByCountry}/${slug}`,
-      getRequestOptions
+      `${baseApiUrl}${apiEndpoints.getByCountry}/${slug}`
     );
     const countryString: string = await countryResponse.text();
     const fetchedDetails: ICountryDetails[] = JSON.parse(

@@ -56,13 +56,8 @@ export const CountryDetails: React.FC = (): JSX.Element => {
   const showModal = useCallback((): void => {
     changeShowModal(true);
 
-    //Only use the last 10 entries
-    const newHistoricData: ICountryDetails[] = details.details
-      .slice(-11)
-      .reverse();
-    newHistoricData.pop();
-
-    changeHistoricData(newHistoricData);
+    const newDetails: ICountryDetails[] = [...details.details.reverse()];
+    changeHistoricData(newDetails);
   }, [details, changeShowModal, changeHistoricData]);
 
   return details && details.state === DataState.idle ? (
