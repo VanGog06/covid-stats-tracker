@@ -11,3 +11,13 @@
     }
   }
 }
+
+@media (max-width: 1260px) {
+  .app_root {
+    width: 100%;
+
+    &__countries_container {
+      flex-direction: column;
+    }
+  }
+}
