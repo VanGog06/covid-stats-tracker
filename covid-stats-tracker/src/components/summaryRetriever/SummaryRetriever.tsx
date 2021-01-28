@@ -7,7 +7,7 @@ import { SummaryType } from '../../models/summary/SummaryType';
 import { CovidApiService } from '../../services/CovidApiService';
 import styles from './SummaryRetriever.module.scss';
 
-export const SummaryRetriever = (): JSX.Element => {
+export const SummaryRetriever: React.FC = (): JSX.Element => {
   const { summary, changeSummary }: CovidContextType = useContext(CovidContext);
 
   const getSummary = useCallback(

@@ -11,10 +11,9 @@ export const Details: React.FC<ICompletedDetailsProps> = ({
   handleBtnClick,
 }: ICompletedDetailsProps): JSX.Element => {
   const { slug } = useParams<CountryDetailsParams>();
-  const countryName: string = useMemo(
-    (): string => (details ? details.Country : ""),
-    [details]
-  );
+  const countryName: string = useMemo((): string => details.Country || "", [
+    details,
+  ]);
 
   const date: string = useMemo(() => new Date(details.Date).toDateString(), [
     details,

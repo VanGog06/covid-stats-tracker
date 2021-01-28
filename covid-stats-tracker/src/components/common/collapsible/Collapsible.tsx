@@ -10,11 +10,11 @@ export const Collapsible: React.FC<ICollapsibleProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const contentClassName: string = useMemo(
-    () => (isOpen ? styles.content : styles.hideContent),
+    (): string => (isOpen ? styles.content : styles.hideContent),
     [isOpen]
   );
 
-  const toggleContent = useCallback(() => {
+  const toggleContent = useCallback((): void => {
     setIsOpen(!isOpen);
   }, [isOpen, setIsOpen]);
 
@@ -27,15 +27,7 @@ export const Collapsible: React.FC<ICollapsibleProps> = ({
       >
         {title}
       </button>
-      <div className={contentClassName}>
-        {/* <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p> */}
-        {body}
-      </div>
+      <div className={contentClassName}>{body}</div>
     </>
   );
 };

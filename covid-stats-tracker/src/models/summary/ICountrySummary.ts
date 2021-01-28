@@ -1,6 +1,6 @@
-import { IGlobalSummary } from './IGlobalSummary';
+import { ISummary } from './ISummary';
 
-export interface ICountrySummary extends IGlobalSummary {
+export interface ICountrySummary extends ISummary {
   Country: string;
   CountryCode: string;
   Slug: string;

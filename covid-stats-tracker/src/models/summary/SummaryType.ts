@@ -1,9 +1,9 @@
 import { DataState } from '../common/DataState';
 import { ICountrySummary } from './ICountrySummary';
-import { IGlobalSummary } from './IGlobalSummary';
+import { ISummary } from './ISummary';
 
 export type SummaryType = {
-  Global: IGlobalSummary;
+  Global: ISummary;
   Countries: ICountrySummary[];
   Message: string;
   ID: string;

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 
 import { CovidContext } from '../../context/CovidContext';
 import { DataState } from '../../models/common/DataState';
@@ -10,19 +10,13 @@ import { CountriesList } from './countriesList/CountriesList';
 export const Countries = (): JSX.Element => {
   const { summary }: CovidContextType = useContext(CovidContext);
 
-  const pendingDetails: JSX.Element = useMemo(() => <></>, []);
-
-  const loadingDetails: JSX.Element = useMemo(() => <Loader />, []);
-
-  const errorDetails: JSX.Element = useMemo(() => <Error />, []);
-
   return summary && summary.State === DataState.idle ? (
-    pendingDetails
+    <></>
   ) : summary.State === DataState.pending ? (
-    loadingDetails
+    <Loader />
   ) : summary.State === DataState.completed ? (
     <CountriesList countries={summary.Countries} />
   ) : (
-    errorDetails
+    <Error />
   );
 };

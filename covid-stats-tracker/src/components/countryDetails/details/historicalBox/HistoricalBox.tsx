@@ -40,25 +40,27 @@ export const HistoricalBox: React.FC = (): JSX.Element => {
     })();
   }, [slug, summary, setHasError, changeHistoricData, changeShowModal]);
 
-  const historicCollapsibles: JSX.Element[] = useMemo(() => {
-    return historicData.map((hd) => {
-      const body: JSX.Element = (
-        <div className={styles.detail_container}>
-          <Detail title="Confirmed" data={hd.Confirmed} />
-          <Detail title="Active" data={hd.Active} />
-          <Detail title="Deaths" data={hd.Deaths} />
-          <Detail title="Recovered" data={hd.Recovered} />
-        </div>
-      );
-      return (
-        <Collapsible
-          key={hd.ID}
-          title={new Date(hd.Date).toDateString()}
-          body={body}
-        />
-      );
-    });
-  }, [historicData]);
+  const historicCollapsibles: JSX.Element[] = useMemo(
+    () =>
+      historicData.map((hd) => {
+        const body: JSX.Element = (
+          <div className={styles.detail_container}>
+            <Detail title="Confirmed" data={hd.Confirmed} />
+            <Detail title="Active" data={hd.Active} />
+            <Detail title="Deaths" data={hd.Deaths} />
+            <Detail title="Recovered" data={hd.Recovered} />
+          </div>
+        );
+        return (
+          <Collapsible
+            key={hd.ID}
+            title={new Date(hd.Date).toDateString()}
+            body={body}
+          />
+        );
+      }),
+    [historicData]
+  );
 
   const modalBody: JSX.Element = useMemo(
     (): JSX.Element => <>{historicCollapsibles}</>,
