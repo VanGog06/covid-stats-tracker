@@ -26,7 +26,6 @@ export const SummaryRetriever = (): JSX.Element => {
 
         changeSummary({ ...fetchedSummary, State: DataState.completed });
       } catch (err) {
-        console.log(err);
         changeSummary({ ...summary, State: DataState.error });
       }
     },

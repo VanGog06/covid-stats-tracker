@@ -35,7 +35,6 @@ export const CountryDetails: React.FC = (): JSX.Element => {
         );
         setDetails({ details: fetchedDetails, state: DataState.completed });
       } catch (err) {
-        console.log(err);
         setDetails((prevState: CountryDetailsType) => ({
           details: { ...prevState.details },
           state: DataState.error,

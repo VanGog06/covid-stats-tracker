@@ -1,14 +1,44 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { CovidContext } from '../../../../context/CovidContext';
+import { CountryDetailsParams } from '../../../../models/common/CountryDetailsParams';
+import { DataState } from '../../../../models/common/DataState';
 import { CovidContextType } from '../../../../models/context/CovidContextType';
+import { ICountryDetails } from '../../../../models/country/ICountryDetails';
+import { CovidApiService } from '../../../../services/CovidApiService';
 import { Collapsible } from '../../../common/collapsible/Collapsible';
+import { Error } from '../../../common/error/Error';
 import { ModalBox } from '../../../common/modalBox/ModalBox';
 import { Detail } from '../detail/Detail';
 import styles from './HistoricalBox.module.scss';
 
 export const HistoricalBox: React.FC = (): JSX.Element => {
-  const { historicData }: CovidContextType = useContext(CovidContext);
+  const {
+    historicData,
+    summary,
+    changeShowModal,
+    changeHistoricData,
+  }: CovidContextType = useContext(CovidContext);
+  const { slug } = useParams<CountryDetailsParams>();
+  const [hasError, setHasError] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async (): Promise<void> => {
+      if (summary.State === DataState.idle) {
+        try {
+          const fetchedDetails: ICountryDetails[] = await CovidApiService.getByCountry(
+            slug
+          );
+
+          changeHistoricData(fetchedDetails.reverse());
+          changeShowModal(true);
+        } catch (err) {
+          setHasError(true);
+        }
+      }
+    })();
+  }, [slug, summary, setHasError, changeHistoricData, changeShowModal]);
 
   const historicCollapsibles: JSX.Element[] = useMemo(() => {
     return historicData.map((hd) => {
@@ -35,5 +65,9 @@ export const HistoricalBox: React.FC = (): JSX.Element => {
     [historicCollapsibles]
   );
 
-  return <ModalBox title="Historic data" body={modalBody} />;
+  return hasError ? (
+    <Error />
+  ) : (
+    <ModalBox title="Historic data" body={modalBody} />
+  );
 };
